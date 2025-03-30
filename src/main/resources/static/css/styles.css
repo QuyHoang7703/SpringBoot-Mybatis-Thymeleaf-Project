@@ -1,0 +1,9 @@
+span {
+    display: block;
+    color: red;
+    margin-bottom: 8px;
+}
+
+.confirm-input {
+    background-color: #ddd;
+}

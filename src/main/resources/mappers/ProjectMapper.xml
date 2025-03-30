@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.Spring_MyBatis_Thymeleaf.mapper.ProjectMapper">
+
+    <resultMap id="ProjectResultMap" type="com.example.Spring_MyBatis_Thymeleaf.model.Project">
+        <id column="projectId" property="projectId"/>
+        <result column="projectNM" property="projectNM"/>
+        <result column="difficulty" property="difficulty"/>
+        <result column="version" property="version"/>
+        <result column="insTM" property="insTM"/>
+        <result column="updTM" property="updTM"/>
+        <association property="department" javaType="com.example.Spring_MyBatis_Thymeleaf.model.Department">
+            <id column="deptId" property="deptId"/>
+            <result column="deptNM" property="deptNM"/>
+        </association>
+    </resultMap>
+
+    <select id="countByProjectName" parameterType="String">
+        SELECT COUNT(*) FROM project p
+        WHERE p.projectNM = #{projectNM}
+    </select>
+
+    <insert id="createProject" parameterType="com.example.Spring_MyBatis_Thymeleaf.model.Project" useGeneratedKeys="true" keyProperty="projectId">
+        INSERT INTO project(projectNM, difficulty, insTM, updTM, version, deptId)
+        VALUES (#{projectNM}, #{difficulty}, #{insTM}, #{updTM}, #{version}, #{deptId})
+    </insert>
+
+</mapper>
