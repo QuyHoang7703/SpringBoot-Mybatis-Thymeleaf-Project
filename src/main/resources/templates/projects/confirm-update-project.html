@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update project</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<form th:action="@{/projects/update}" method="POST">
+  <div class="container border p-3 mt-3" th:object="${projectForm}" >
+    <h2>Detail project</h2>
+    <form th:action="@{/projects}" method="post">
+      <label class="form-label" for="projectId" >Project ID</label>
+      <input type="text" class="form-control confirm-input" id="projectId" th:field="*{projectId}" readonly>
+
+      <label class="form-label" for="projectNM">Project Name</label>
+      <input type="text" class="form-control confirm-input" id="projectNM" th:field="*{projectNM}" readonly>
+      <span th:if="${#fields.hasErrors('projectNM')}" th:errors="*{projectNM}"></span>
+
+      <label class="form-label" for="difficulty">Difficulty</label>
+      <input type="text" class="form-control confirm-input" id="difficulty" th:field="*{difficulty}" readonly>
+
+
+      <label for="deptNM" class="form-label">Department</label>
+      <input type="text" class="form-control confirm-input" id="deptNM" th:field="*{deptNM}" readonly>
+
+      <input type="hidden" class="form-control confirm-input" id="deptID" th:field="*{deptId}" readonly>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-success">Update</button>
+        <button type="button" class="btn btn-secondary" onclick="submitBack()">Back</button>
+
+      </div>
+    </form>
+  </div>
+</form>
+<form id="backForm" th:action="@{/projects/update/back}" method="POST">
+  <input type="hidden" name="projectId" th:value="${projectForm.projectId}">
+  <input type="hidden" name="projectNM" th:value="${projectForm.projectNM}">
+  <input type="hidden" name="difficulty" th:value="${projectForm.difficulty}">
+  <input type="hidden" name="deptId" th:value="${projectForm.deptId}">
+</form>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+  function submitBack() {
+    document.getElementById("backForm").submit();
+  }
+</script>
+</body>
+</html>

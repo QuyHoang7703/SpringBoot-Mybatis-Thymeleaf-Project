@@ -28,4 +28,48 @@
         VALUES (#{projectNM}, #{difficulty}, #{insTM}, #{updTM}, #{version}, #{deptId})
     </insert>
 
+    <select id="getAllProjects" resultMap="ProjectResultMap">
+        SELECT p.projectId, p.projectNM, p.difficulty, p.version, p.insTM, p.updTM, d.deptNM
+        FROM project p
+        JOIN department d ON p.deptId = d.deptId
+        WHERE p.projectId LIKE #{keySearch}
+            OR p.projectNM LIKE #{keySearch}
+            OR p.difficulty LIKE #{keySearch}
+            OR d.deptNM LIKE #{keySearch}
+        ORDER BY p.projectId
+        LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+
+    <select id="countProjectsByKeySearch" parameterType="string">
+        SELECT COUNT(*) FROM project p
+        JOIN department d ON p.deptId = d.deptId
+        WHERE p.projectId LIKE #{keySearch}
+           OR p.projectNM LIKE #{keySearch}
+           OR p.difficulty LIKE #{keySearch}
+           OR d.deptNM LIKE #{keySearch}
+    </select>
+
+    <select id="getProjectById" resultMap="ProjectResultMap">
+        SELECT p.projectId, p.projectNM, p.difficulty, p.version, p.insTM, p.updTM, p.deptId
+        FROM project p
+        WHERE p.projectId = #{projectId}
+    </select>
+
+    <update id="updateProject" parameterType="com.example.Spring_MyBatis_Thymeleaf.model.Project" useGeneratedKeys="true" keyProperty="projectId">
+        UPDATE project p
+        SET p.projectNM = #{projectNM},
+            p.difficulty = #{difficulty},
+            p.version = #{version},
+            p.updTM = #{updTM},
+            p.deptId = #{department.deptId}
+        WHERE p.projectId = #{projectId}
+    </update>
+
+
+    <select id="countByProjectNameBeforeUpdate" resultType="int">
+        SELECT COUNT(*) FROM project p
+        WHERE p.projectNM = #{projectNM}
+        AND p.projectId != #{projectId}
+    </select>
+
 </mapper>

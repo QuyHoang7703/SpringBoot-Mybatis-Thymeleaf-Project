@@ -1,11 +1,19 @@
 package com.example.Spring_MyBatis_Thymeleaf.form;
 
 public class ProjectForm {
-//    private int projectId;
+    private int projectId;
     private String projectNM;
     private String difficulty;
     private int deptId;
     private String deptNM;
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
 
     public String getProjectNM() {
         return projectNM;
@@ -38,4 +46,6 @@ public class ProjectForm {
     public void setDeptNM(String deptNM) {
         this.deptNM = deptNM;
     }
+
+
 }

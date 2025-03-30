@@ -9,7 +9,7 @@ public class Project {
     private int version;
     private LocalDate insTM;
     private LocalDate updTM;
-    private int deptId;
+    private Department department;
 
     public int getProjectId() {
         return projectId;
@@ -67,11 +67,11 @@ public class Project {
         this.projectNM = projectNM;
     }
 
-    public int getDeptId() {
-        return deptId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDeptId(int deptId) {
-        this.deptId = deptId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
