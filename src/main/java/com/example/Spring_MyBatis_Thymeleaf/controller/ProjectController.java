@@ -3,7 +3,6 @@ package com.example.Spring_MyBatis_Thymeleaf.controller;
 import com.example.Spring_MyBatis_Thymeleaf.dto.DepartmentDTO;
 import com.example.Spring_MyBatis_Thymeleaf.dto.PaginationDTO;
 import com.example.Spring_MyBatis_Thymeleaf.dto.ProjectResponseDTO;
-import com.example.Spring_MyBatis_Thymeleaf.exception.ApplicationException;
 import com.example.Spring_MyBatis_Thymeleaf.form.ProjectForm;
 import com.example.Spring_MyBatis_Thymeleaf.logic.DepartmentLogic;
 import com.example.Spring_MyBatis_Thymeleaf.logic.ProjectLogic;
