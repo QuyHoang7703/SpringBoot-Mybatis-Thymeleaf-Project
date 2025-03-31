@@ -107,7 +107,6 @@ public class ProjectController {
         if (bindingResult.hasErrors()) {
             List<DepartmentDTO> departmentDTOS = this.departmentLogic.getAllDepartments();
             model.addAttribute("departmentDTOS", departmentDTOS);
-            model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("projectResponseDTO", projectForm);
             return "projects/detail-project";
         }
@@ -141,5 +140,19 @@ public class ProjectController {
 
         model.addAttribute("projectResponseDTO", projectResponseDTO);
         return "projects/success-update-project";
+    }
+
+    @GetMapping("/delete-confirm/{projectId}")
+    public String confirmDeleteProject(@PathVariable("projectId") int projectId, Model model) {
+        model.addAttribute("projectId", projectId);
+        return "projects/confirm-delete-project";
+    }
+
+    @GetMapping("/delete/{projectId}")
+    public String deleteProject(@PathVariable("projectId") int projectId, Model model) {
+        this.projectLogic.deleteProjectById(projectId);
+        model.addAttribute("projectId", projectId);
+
+        return "projects/success-delete-project";
     }
 }

@@ -1,6 +1,6 @@
 package com.example.Spring_MyBatis_Thymeleaf.form;
 
-public class UserForm {
+public class LoginForm {
     private String username;
     private String password;
 

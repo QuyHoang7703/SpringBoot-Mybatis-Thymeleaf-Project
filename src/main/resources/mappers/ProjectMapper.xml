@@ -25,7 +25,7 @@
 
     <insert id="createProject" parameterType="com.example.Spring_MyBatis_Thymeleaf.model.Project" useGeneratedKeys="true" keyProperty="projectId">
         INSERT INTO project(projectNM, difficulty, insTM, updTM, version, deptId)
-        VALUES (#{projectNM}, #{difficulty}, #{insTM}, #{updTM}, #{version}, #{deptId})
+        VALUES (#{projectNM}, #{difficulty}, #{insTM}, #{updTM}, #{version}, #{department.deptId})
     </insert>
 
     <select id="getAllProjects" resultMap="ProjectResultMap">
@@ -71,5 +71,10 @@
         WHERE p.projectNM = #{projectNM}
         AND p.projectId != #{projectId}
     </select>
+
+    <delete id="deleteProjectById" parameterType="int">
+        DELETE FROM project p
+        WHERE p.projectId = #{projectId}
+    </delete>
 
 </mapper>

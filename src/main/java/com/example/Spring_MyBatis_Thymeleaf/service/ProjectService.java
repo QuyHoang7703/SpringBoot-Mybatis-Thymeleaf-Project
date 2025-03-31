@@ -13,4 +13,5 @@ public interface ProjectService {
     ProjectResponseDTO getProjectById(int projectId);
     ProjectResponseDTO update(ProjectRequestDTO projectRequestDTO);
     boolean checkProjectNameBeforeUpdate(String projectNM, int projectId);
+    void deleteProjectById(int projectId);
 }

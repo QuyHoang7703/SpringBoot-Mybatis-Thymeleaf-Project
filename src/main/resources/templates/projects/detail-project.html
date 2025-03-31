@@ -7,15 +7,15 @@
   <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<form th:action="@{/projects/update-confirm}" method="POST">
-  <div class="container border p-3 mt-3" th:object="${projectResponseDTO}" >
+<form th:action="@{/projects/update-confirm}" method="POST" th:object="${projectResponseDTO}" >
+  <div class="container border p-3 mt-3" >
     <h2>Detail project</h2>
     <label class="form-label" for="projectId" >Project ID</label>
     <input type="text" class="form-control confirm-input" id="projectId" th:field="*{projectId}">
 
     <label class="form-label" for="projectNM">Project Name</label>
     <input type="text" class="form-control" id="projectNM" th:field="*{projectNM}">
-    <span th:if="${#fields.hasErrors('projectNM')}" th:errors="*{projectNM}"></span>
+    <span th:if="${#fields.hasErrors('projectNM')}" th:errors="${#fields.errors('projectNM')}"></span>
 
 
     <label class="form-label" for="difficulty">Difficulty</label>
@@ -58,9 +58,6 @@
   window.onload = function() {
     updateDeptNM();
   };
-
-
-
 
 </script>
 </body>

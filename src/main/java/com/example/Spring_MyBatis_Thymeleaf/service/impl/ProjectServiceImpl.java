@@ -88,6 +88,11 @@ public class ProjectServiceImpl implements ProjectService {
         return countByProjectName > 0;
     }
 
+    @Override
+    public void deleteProjectById(int projectId) {
+        this.projectMapper.deleteProjectById(projectId);
+    }
+
 
     private ProjectResponseDTO convertToProjectResponseDTO(Project project) {
         ProjectResponseDTO projectResponseDTO = new ProjectResponseDTO();

@@ -15,10 +15,11 @@
     </resultMap>
 
 
-    <select id="getUserByUsername" resultMap="UserResultMap">
-        SELECT u.* FROM user u
+    <select id="getUserByUsername" resultMap="UserResultMap" parameterType="string">
+        SELECT u.username, u.password, r.roleName
+        FROM users u
+        JOIN roles r ON r.roleId = u.roleId
         WHERE u.username = #{username}
-
     </select>
 
 </mapper>

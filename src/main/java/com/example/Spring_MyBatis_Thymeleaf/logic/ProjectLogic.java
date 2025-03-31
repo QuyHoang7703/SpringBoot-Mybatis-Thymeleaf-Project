@@ -20,6 +20,7 @@ public class ProjectLogic {
     }
 
     public void validateInputProject(ProjectForm projectForm, BindingResult bindingResult) {
+        System.out.println(">>.ALO");
         if(projectForm.getProjectNM() == null || projectForm.getProjectNM().trim().isEmpty()) {
             bindingResult.rejectValue("projectNM", "error.projectNM", "Project name cannot be blank");
         }
@@ -57,6 +58,10 @@ public class ProjectLogic {
     public PaginationDTO<List<ProjectResponseDTO>> getProjectWithPagination(int currentPage, int pageSize, String keySearch) {
         PaginationDTO<List<ProjectResponseDTO>> paginationDTO = this.projectService.getAllProjectsWithPagination(currentPage, pageSize, keySearch);
         return paginationDTO;
+    }
+
+    public void deleteProjectById(int projectId) {
+        this.projectService.deleteProjectById(projectId);
     }
 
     private ProjectRequestDTO convertToProjectRequestDTO(ProjectForm projectForm) {

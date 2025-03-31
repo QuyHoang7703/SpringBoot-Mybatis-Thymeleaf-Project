@@ -12,4 +12,5 @@ public interface ProjectMapper {
     Project getProjectById(int id);
     void updateProject(Project project);
     int countByProjectNameBeforeUpdate(String projectNM, int projectId);
+    void deleteProjectById(int projectId);
 }

@@ -1,5 +1,7 @@
 package com.example.Spring_MyBatis_Thymeleaf.config;
 
+import com.example.Spring_MyBatis_Thymeleaf.service.UserDetailCustom;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -20,7 +23,8 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login").permitAll()
+                        .requestMatchers("/", "/login", "/css/**", "/process-login", "/projects").permitAll()
+                        .requestMatchers("/projects/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
 
